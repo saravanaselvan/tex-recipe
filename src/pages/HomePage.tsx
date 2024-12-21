@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
         background: "white",
         paddingBottom: "20px",
         paddingTop: "20px",
-        height: "95vh",
+        height: "95%",
         marginTop: "20px",
         marginBottom: "20px",
         borderRadius: "5px",
