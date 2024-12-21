@@ -5,7 +5,7 @@ import ChemicalTable from "../components/ChemicalTable";
 import DownloadSection from "../components/DownloadSection";
 import Header from "../components/Header";
 
-interface Chemical {
+export interface Chemical {
   brand: string;
   name: string;
   percentage: string;
@@ -55,10 +55,7 @@ const HomePage: React.FC = () => {
       {chemicals.length > 0 && (
         <>
           <DownloadSection
-            onDownload={(company, client, format) =>
-              console.log(`Download ${format}`, { company, client })
-            }
-          />
+            onDownload={(company, client, format) => console.log(`Download ${format}`, { company, client })} chemicals={chemicals}          />
         </>
       )}
     </Container>
