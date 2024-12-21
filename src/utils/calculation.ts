@@ -1,8 +1,8 @@
 // Placeholder for mix and cost calculations
-export const calculateMix = (chemicals: any[], liters: number) => {
+export const calculateMix = (_chemicals: any[], _liters: number) => {
   // Add your calculation logic here
 };
 
-export const calculateCost = (chemicals: any[]) => {
+export const calculateCost = (_chemicals: any[]) => {
   // Add your calculation logic here
 };
