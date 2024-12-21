@@ -19,11 +19,6 @@ const ChemicalTable: React.FC<ChemicalTableProps> = ({
   addWater,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-    
-  const totalPercentage = chemicals.reduce(
-    (sum, chem) => sum + parseFloat(chem.percentage || "0"),
-    0
-  );
 
   const handleCalculateMix = (liters: number) => {
     console.log(`Calculating mix for ${liters} liters`, chemicals);

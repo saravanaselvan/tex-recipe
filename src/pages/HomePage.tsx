@@ -1,10 +1,9 @@
+import { Container } from "@mantine/core";
 import React, { useState } from "react";
-import { Container, Button } from "@mantine/core";
-import Header from "../components/Header";
 import ChemicalForm from "../components/ChemicalForm";
 import ChemicalTable from "../components/ChemicalTable";
-import CalculateMixModal from "../components/CalculateMixModal";
 import DownloadSection from "../components/DownloadSection";
+import Header from "../components/Header";
 
 interface Chemical {
   brand: string;

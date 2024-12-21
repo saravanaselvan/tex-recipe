@@ -1,5 +1,5 @@
+import { Button, Group, Modal, NumberInput } from '@mantine/core';
 import React, { useState } from 'react';
-import { Modal, TextInput, NumberInput, Button, Group } from '@mantine/core';
 
 interface CalculateMixModalProps {
   isOpen: boolean;

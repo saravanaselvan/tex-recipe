@@ -1,5 +1,5 @@
+import { Button, Flex, TextInput, Title } from "@mantine/core";
 import React, { useState } from "react";
-import { TextInput, Button, Group, Flex, Title } from "@mantine/core";
 
 interface DownloadSectionProps {
   onDownload: (companyName: string, clientName: string, format: string) => void;

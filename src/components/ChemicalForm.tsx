@@ -1,12 +1,10 @@
-import React, { useState } from "react";
 import {
-  TextInput,
-  NumberInput,
   Button,
-  Group,
-  Grid,
   Flex,
+  NumberInput,
+  TextInput
 } from "@mantine/core";
+import React, { useState } from "react";
 
 interface Chemical {
   brand: string;
