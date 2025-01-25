@@ -4,24 +4,24 @@ import React, { useState } from 'react';
 interface CalculateMixModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCalculate: (liters: number) => void;
+  onCalculate: (quantity: number) => void;
 }
 
 const CalculateMixModal: React.FC<CalculateMixModalProps> = ({ isOpen, onClose, onCalculate }) => {
-  const [liters, setLiters] = useState<string>('');
+  const [quantity, setQuantity] = useState<string>('');
 
   const handleCalculate = () => {
-    onCalculate(parseFloat(liters));
+    onCalculate(parseFloat(quantity));
     onClose();
   };
 
   return (
     <Modal opened={isOpen} onClose={onClose} title="Calculate Mix">
       <NumberInput
-        label="Enter Liters"
-        placeholder="Enter Liters"
-        value={parseFloat(liters)}
-        onChange={(value) => setLiters(value?.toString() || '')}
+        label="Enter Quantity (KG/L)"
+        placeholder="Enter Quantity (KG/L)"
+        value={parseFloat(quantity)}
+        onChange={(value) => setQuantity(value?.toString() || '')}
       />
       <Group mt="md">
         <Button onClick={handleCalculate}>Calculate</Button>

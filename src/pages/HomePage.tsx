@@ -1,5 +1,5 @@
 import { Container } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChemicalForm from "../components/ChemicalForm";
 import ChemicalTable from "../components/ChemicalTable";
 import DownloadSection from "../components/DownloadSection";
@@ -14,9 +14,34 @@ export interface Chemical {
 
 const HomePage: React.FC = () => {
   const [chemicals, setChemicals] = useState<Chemical[]>([]);
+  const [recalculateWater, setRecalculateWater] = useState(false);
 
-  const addChemical = (chemical: Chemical) =>
+  useEffect(() => {
+    if(!recalculateWater) return;
+    const totalPercentage = chemicals.filter((chem) => chem.name !== "Water").reduce(
+      (sum, chem) => sum + parseFloat(chem.percentage || "0"),
+      0
+    );
+    
+    const isWaterAdded = chemicals.some((chem) => chem.name === "Water");
+    if(isWaterAdded) {
+      const newChemicals = chemicals.filter((chem) => chem.name !== "Water");
+      setChemicals([
+        ...newChemicals,
+        {
+          brand: "",
+          name: "Water",
+          percentage: `${100 - totalPercentage}`,
+          cost: "50",
+        },
+      ]);      
+    }
+    setRecalculateWater(false);
+  }, [recalculateWater]);
+  const addChemical = (chemical: Chemical) => {
     setChemicals([...chemicals, chemical]);
+    setRecalculateWater(!recalculateWater);
+  }
   const addWater = () => {
     const totalPercentage = chemicals.reduce(
       (sum, chem) => sum + parseFloat(chem.percentage || "0"),
@@ -29,7 +54,7 @@ const HomePage: React.FC = () => {
           brand: "",
           name: "Water",
           percentage: `${100 - totalPercentage}`,
-          cost: "",
+          cost: "50",
         },
       ]);
     }

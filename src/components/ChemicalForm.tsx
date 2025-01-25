@@ -6,7 +6,7 @@ import {
 } from "@mantine/core";
 import React, { useState } from "react";
 
-interface Chemical {
+export interface Chemical {
   brand: string;
   name: string;
   percentage: string;
@@ -68,15 +68,16 @@ const ChemicalForm: React.FC<ChemicalFormProps> = ({ addChemical }) => {
           withAsterisk
         />
         <NumberInput
-          label="Cost per KG (optional)"
-          placeholder="Cost per KG (optional)"
+          label="Cost per KG/L"
+          placeholder="Cost per KG/L"
           name="cost"
           value={parseFloat(chemical.cost || "0")}
           onChange={(value) =>
             setChemical({ ...chemical, cost: value?.toString() || "" })
           }
+          withAsterisk
         />
-        <Button onClick={handleAdd} style={{ alignSelf: "flex-end" }} disabled={!(chemical.brand && chemical.name && chemical.percentage)}>Add Chemical</Button>
+        <Button onClick={handleAdd} style={{ alignSelf: "flex-end" }} disabled={!(chemical.brand && chemical.name && chemical.percentage && chemical.cost)}>Add Chemical</Button>
       </Flex>
     </div>
   );
