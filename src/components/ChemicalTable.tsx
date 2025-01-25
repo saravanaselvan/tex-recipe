@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Table, Button, Divider, Title, Text, Flex, NumberInput } from "@mantine/core";
+import React, { useState } from "react";
+import { Table, Button, Divider, Title, Text, Flex } from "@mantine/core";
 import CalculateMixModal from "./CalculateMixModal";
 import { calculateMix } from "../utils/calculation";
 
@@ -20,17 +20,17 @@ const ChemicalTable: React.FC<ChemicalTableProps> = ({
   addWater,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [quantity, setQuantity] = useState<number>(1);
-  const [totalPercent, setTotalPercent] = useState<number>(0);
+  // const [quantity, setQuantity] = useState<number>(1);
+  // const [totalPercent, setTotalPercent] = useState<number>(0);
   const [totalCost, setTotalCost] = useState<string>("");
 
-  useEffect(() => {
-    const totalPercentage = chemicals.reduce(
-      (sum, chem) => sum + parseFloat(chem.percentage || "0"),
-      0
-    );
-    setTotalPercent(totalPercentage);
-  }, [chemicals]);
+  // useEffect(() => {
+  //   const totalPercentage = chemicals.reduce(
+  //     (sum, chem) => sum + parseFloat(chem.percentage || "0"),
+  //     0
+  //   );
+  //   setTotalPercent(totalPercentage);
+  // }, [chemicals]);
 
   const handleCalculateMix = (quantity: number) => {
     const totalCost = calculateMix(chemicals, quantity);
