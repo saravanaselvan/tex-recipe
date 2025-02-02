@@ -8,7 +8,7 @@ export const calculateMix = (chemicals: Chemical[], quantity: number) => {
       throw new Error("Total percentage must equal 100%");
   }
   
-  let totalCostPerKG = chemicals.reduce((sum, chem) => {
+  let totalCostPerKG = chemicals.filter(val => val.name !== "Water").reduce((sum, chem) => {
       return sum + (parseFloat(chem.percentage) / 100) * parseFloat(chem.cost!);
   }, 0);
   

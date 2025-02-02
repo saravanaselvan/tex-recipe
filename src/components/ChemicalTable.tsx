@@ -13,11 +13,13 @@ interface Chemical {
 interface ChemicalTableProps {
   chemicals: Chemical[];
   addWater: () => void;
+  setTotalCostText: (text: string) => void;
 }
 
 const ChemicalTable: React.FC<ChemicalTableProps> = ({
   chemicals,
   addWater,
+  setTotalCostText
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [quantity, setQuantity] = useState<number>(1);
@@ -35,6 +37,7 @@ const ChemicalTable: React.FC<ChemicalTableProps> = ({
   const handleCalculateMix = (quantity: number) => {
     const totalCost = calculateMix(chemicals, quantity);
     setTotalCost(`Total cost for ${quantity} KG/L is Rs. ${totalCost}`);
+    setTotalCostText(`Total cost for ${quantity} KG/L is Rs. ${totalCost}`);
     console.log(`Calculating mix for ${quantity} liters`, chemicals);
   };
 

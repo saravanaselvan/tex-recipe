@@ -15,6 +15,7 @@ export interface Chemical {
 const HomePage: React.FC = () => {
   const [chemicals, setChemicals] = useState<Chemical[]>([]);
   const [recalculateWater, setRecalculateWater] = useState(false);
+  const [totalCostText, setTotalCostText] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if(!recalculateWater) return;
@@ -32,7 +33,7 @@ const HomePage: React.FC = () => {
           brand: "",
           name: "Water",
           percentage: `${100 - totalPercentage}`,
-          cost: "50",
+          cost: "",
         },
       ]);      
     }
@@ -54,7 +55,7 @@ const HomePage: React.FC = () => {
           brand: "",
           name: "Water",
           percentage: `${100 - totalPercentage}`,
-          cost: "50",
+          cost: "",
         },
       ]);
     }
@@ -76,11 +77,11 @@ const HomePage: React.FC = () => {
     >
       <Header />
       <ChemicalForm addChemical={addChemical} />
-      <ChemicalTable chemicals={chemicals} addWater={addWater} />
+      <ChemicalTable chemicals={chemicals} addWater={addWater} setTotalCostText={setTotalCostText}/>
       {chemicals.length > 0 && (
         <>
           <DownloadSection
-            onDownload={(company, client, format) => console.log(`Download ${format}`, { company, client })} chemicals={chemicals}          />
+            onDownload={(company, client, format) => console.log(`Download ${format}`, { company, client })} chemicals={chemicals} totalCostText={totalCostText} />
         </>
       )}
     </Container>
