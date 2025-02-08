@@ -1,7 +1,5 @@
-import { Chemical } from "../components/ChemicalForm";
-
 // Placeholder for mix and cost calculations
-export const calculateMix = (chemicals: Chemical[], quantity: number) => {
+export const calculateMix = (chemicals: any[], quantity: number) => {
   let totalPercentage = chemicals.reduce((sum, chem) => sum + parseFloat(chem.percentage) , 0);
     
   if (totalPercentage !== 100) {

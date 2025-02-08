@@ -1,28 +1,14 @@
-import {
-  Button,
-  Flex,
-  NumberInput,
-  TextInput
-} from "@mantine/core";
-import React, { useState } from "react";
+import { Button, Flex, NumberInput, TextInput } from '@mantine/core';
+import React, { useState } from 'react';
+import { useChemicalContext } from '../context/ChemicalContext';
 
-export interface Chemical {
-  brand: string;
-  name: string;
-  percentage: string;
-  cost?: string;
-}
-
-interface ChemicalFormProps {
-  addChemical: (chemical: Chemical) => void;
-}
-
-const ChemicalForm: React.FC<ChemicalFormProps> = ({ addChemical }) => {
-  const [chemical, setChemical] = useState<Chemical>({
-    brand: "",
-    name: "",
-    percentage: "",
-    cost: "",
+const ChemicalForm: React.FC = () => {
+  const { addChemical } = useChemicalContext();
+  const [chemical, setChemical] = useState({
+    brand: '',
+    name: '',
+    percentage: '',
+    cost: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,15 +17,14 @@ const ChemicalForm: React.FC<ChemicalFormProps> = ({ addChemical }) => {
 
   const handleAdd = () => {
     addChemical(chemical);
-    setChemical({ brand: "", name: "", percentage: "", cost: "" });
+    setChemical({ brand: '', name: '', percentage: '', cost: '' });
   };
 
   return (
     <div>
       <Flex
-        direction={{ base: "column", sm: "row" }}
-        gap={{ base: "sm", sm: "lg" }}
-        // justify={{ sm: "center" }}
+        direction={{ base: 'column', sm: 'row' }}
+        gap={{ base: 'sm', sm: 'lg' }}
       >
         <TextInput
           label="Brand"
@@ -63,7 +48,7 @@ const ChemicalForm: React.FC<ChemicalFormProps> = ({ addChemical }) => {
           name="percentage"
           value={parseFloat(chemical.percentage)}
           onChange={(value) =>
-            setChemical({ ...chemical, percentage: value?.toString() || "" })
+            setChemical({ ...chemical, percentage: value?.toString() || '' })
           }
           withAsterisk
         />
@@ -71,13 +56,21 @@ const ChemicalForm: React.FC<ChemicalFormProps> = ({ addChemical }) => {
           label="Cost per KG/L"
           placeholder="Cost per KG/L"
           name="cost"
-          value={parseFloat(chemical.cost || "0")}
+          value={parseFloat(chemical.cost || '0')}
           onChange={(value) =>
-            setChemical({ ...chemical, cost: value?.toString() || "" })
+            setChemical({ ...chemical, cost: value?.toString() || '' })
           }
           withAsterisk
         />
-        <Button onClick={handleAdd} style={{ alignSelf: "flex-end" }} disabled={!(chemical.brand && chemical.name && chemical.percentage && chemical.cost)}>Add Chemical</Button>
+        <Button
+          onClick={handleAdd}
+          style={{ alignSelf: 'flex-end' }}
+          disabled={
+            !(chemical.brand && chemical.name && chemical.percentage && chemical.cost)
+          }
+        >
+          Add Chemical
+        </Button>
       </Flex>
     </div>
   );
